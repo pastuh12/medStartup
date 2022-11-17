@@ -1,0 +1,283 @@
+openapi: "3.0.2"
+info:
+  title: Приложения для взаимодействия врача и пациента
+  version: "0.0.1"
+servers:
+  - url: https://localhost:8000/api/v1/
+    description: Dev server
+paths:
+  # запросы для авторизации
+  /auth/login:
+    post:
+      summary: Авторизация в приложении
+      tags:
+        - Auth
+      operationId: login
+      responses:
+        "200":
+          description: User was logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserAuthData"
+        "default":
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthError"
+  /auth/changePassword:
+    post:
+      summary: Сменить пароль пользователя
+      tags:
+        - Auth
+      operationId: changePassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordData"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewPasswordData"
+        "default":
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthError"
+
+  # запросы для пользователя
+  /{user_id}/personData:
+    get:
+      tags:
+        - Пользователь
+      summary: Личные данные пользователя
+      operationId: getPersonData
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: Идентификатор пользователя
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserPersonData"
+        "default":
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserError"
+    # будем добавлять возможность изменения личных данных в приложении???
+  /{user_id}/allTask:
+    get:
+      tags:
+        - Пользователь
+      summary: Получить задачи пользователя
+      operationId: getAllTask
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: Идентификатор пользователя
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllTask"
+
+
+  # запросы для пациента
+  /{patient_id}/sickLIst:
+    get:
+      tags:
+        - Пациент
+      summary: Получить больничный лист пациента
+      parameters:
+        - name: patient_id
+          in: path
+          required: true
+          description: Идентификатор пациента
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientSickListData"
+        "default":
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserError"
+  /{patient_id}/healthStatus:
+    get:
+      tags:
+        - Пациент
+      summary: Получить описание самочувствия
+      parameters:
+        - name: patient_id
+          in: path
+          required: true
+          description: Идентификатор пациента
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+        "default":
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserError"
+
+
+
+components:
+  schemas:
+    # Данные для процесса авторизации
+    UserAuthData:
+      type: object
+      required:
+        - accessToken
+        - refreshToken
+      properties:
+        accessToken:
+          type: string
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSld
+        refreshToken:
+          type: string
+          example: 1eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgS
+    AuthError:
+      type: object
+      required:
+        - messange
+        - code
+      properties:
+        messange:
+          type: string
+          example: "Ошибка при авторизации"
+        code:
+          type: integer
+          example: 404
+    ChangePasswordData:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          example: example@inbox.ru
+    NewPasswordData:
+      type: object
+      required:
+        - newPassword
+      properties:
+        newPassword:
+          type: string
+          example: New_password
+    #Данные для пользователя
+    UserPersonData:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - middleName
+        - birthDate
+        - gender
+        - email
+        - avatarImage
+        - other
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        middleName:
+          type: string
+        birthDate:
+          type: string
+          example: 2001-03-04
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+        email:
+          type: string
+          example: example@inbox.ru
+        avatarImage:
+          type: string
+          example: http://example.com/dir1/xyz123.png
+        other:
+          type: string
+          example: Решить что еще нужно добавить в личную инфу пользователя    
+    UserError:
+      type: object
+      required:
+        - code
+        - messange
+      properties:
+        code:
+          type: integer
+        messange:
+          type: string
+          example: Ошибка при получении данных пользователя
+    Task:
+      type: object
+      required:
+        - title
+        - author
+        - expireDate
+        - status
+      properties:
+        title:
+          type: string
+          example: Сходи туда то
+        description:
+          type: string
+          example: Это находится там то
+        author:
+          type: string
+          example: Еременко С.А
+        expireDate:
+          type: string
+          example: 2022.12.12
+        status:
+          type: string
+          enum:
+            - complied
+            - in progress
+    AllTask:
+      type: array
+      items:
+        $ref: "#/components/schemas/Task"
+
+    #Данные для пациента
+    PatientSickListData:
+      type: array #?object
+    
+    HealthStatus:
+      type: object #?что в нем хранится
