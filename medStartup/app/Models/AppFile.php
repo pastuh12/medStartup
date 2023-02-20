@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientXRayFiles extends Model
+class AppFile extends Model
 {
     use HasFactory;
 
-    protected $table = 'PatientXRayFiles';
-    protected $primaryKey = 'PatientXRayFileId';
+    protected $table = 'AppFile';
+    protected $primaryKey = 'AppFileId';
     protected $incrementing = false;
     protected $keyType = 'int';
     protected $fillable = [
-        'PatientXRayFileId',
-        'PatientXrayId',
-        'FileId',
+        'AppFileId',
+        'MimeType',
+        'Extension',
+        'OriginalName',
+        'Created',
     ];
 }

@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientXRayFiles extends Model
+class PatientAnalysisSpermogram extends Model
 {
     use HasFactory;
 
-    protected $table = 'PatientXRayFiles';
-    protected $primaryKey = 'PatientXRayFileId';
+    protected $table = 'PatientAnalysisSpermogram';
+    protected $primaryKey = 'Id';
     protected $incrementing = false;
     protected $keyType = 'int';
     protected $fillable = [
-        'PatientXRayFileId',
-        'PatientXrayId',
-        'FileId',
+        'PatientId',
+        'Description',
+        'Created',
+        'Updated',
+        'ActionDate',
     ];
 }
