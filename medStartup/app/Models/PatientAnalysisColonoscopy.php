@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientAssignment extends Model
+class PatientAnalysisColonoscopy extends Model
 {
     use HasFactory;
 
     //use HasUuids;
 
-    protected $table = 'PatientAssignment';
-    protected $primaryKey = 'PatientAssignmentId';
+    protected $table = 'PatientAnalysisColonoscopy';
+    protected $primaryKey = 'Id';
     protected $incrementing = false;
     protected $keyType = 'int';
     protected $connection = 'pgsql';
     protected $fillable = [
         'PatientId',
-        'Title',
-        'Category',
-        'IsAssigned',
-        'IsResolved',
+        'Description',
+        'Created',
+        'Updated',
         'ActionDate',
-        'Priority',
     ];
 }
