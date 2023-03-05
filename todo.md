@@ -7,3 +7,4 @@ TODO: что за поле [Privileges] в PatientMedicalData и почему []
 03_05
 
 TODO: изменить там, где нужно, поля Created и Updated на laravel timestamp 
+TODO: реализовать миграции для всех таблиц
