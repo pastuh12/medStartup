@@ -16,7 +16,6 @@ class AppAttachedFile extends Model
     protected $incrementing = false;
     protected $keyType = 'int';
     protected $fillable = [
-        'AppAttachedFileId',
         'TableWithAttachmentName',
         'TableAttachmentPrimaryKey',
         'AppFileId',

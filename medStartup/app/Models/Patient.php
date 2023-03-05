@@ -12,8 +12,6 @@ class Patient extends Model
 
         protected $table = 'Patient';
         protected $primaryKey = 'PatientID';
-
-        //TODO: изменить если id просто числа
         protected $incrementing = false;
         protected $keyType = 'int';
         protected $connection = 'pgsql';

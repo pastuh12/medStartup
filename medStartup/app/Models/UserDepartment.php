@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Chamber extends Model
+class UserDepartment extends Model
 {
     use HasFactory;
 
-        protected $table = 'Chamber';
-        protected $primaryKey = 'ChamberId';
+        protected $table = 'UserDepartment';
+        protected $primaryKey = 'Id';
         protected $keyType = 'int';
         protected $fillable = [
-            'Number',
-            'Created',
-            'Updated',
+            'UserId',
             'DepartmentId',
+            'IsDepartmentHead',
+            'IsNurseHead',
+            'Code',
+            'IsMedicalCenterHead',
         ];
 }

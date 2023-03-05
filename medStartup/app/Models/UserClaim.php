@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Chamber extends Model
+class UserClaim extends Model
 {
     use HasFactory;
 
-        protected $table = 'Chamber';
-        protected $primaryKey = 'ChamberId';
+        protected $table = 'UserClaim';
+        protected $primaryKey = 'Id';
         protected $keyType = 'int';
         protected $fillable = [
-            'Number',
-            'Created',
-            'Updated',
-            'DepartmentId',
+            'UserId',
+            'ClaimType',
+            'ClaimValue',
         ];
 }
