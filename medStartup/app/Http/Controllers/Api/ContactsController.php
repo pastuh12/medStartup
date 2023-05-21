@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contacts;
 use Illuminate\Http\Request;
 
-class ContactsController extends Controller
+class ContactsController extends \Illuminate\Routing\Controller
 {
     public function getAll(Request $request)
     {
