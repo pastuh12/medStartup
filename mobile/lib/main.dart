@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/pages/async.dart';
 import 'package:myapp/utils.dart';
 //import 'package:myapp/page-1/login.dart';
 // import 'package:myapp/page-1/home.dart';
@@ -25,6 +26,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 	int _currentIndex = 0;
 
+	@override
+	void initState(){
+		super.initState();
+		loadData();
+	}
+	
 	@override
 	Widget build(BuildContext context) {
 	return MaterialApp(
