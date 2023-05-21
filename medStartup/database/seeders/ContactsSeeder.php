@@ -32,7 +32,7 @@ class ContactsSeeder extends Seeder
             'tag' => 'ambulance',
         ]);
 
-        DB::table('constacts')->insert([
+        DB::table('contacts')->insert([
             'title' => 'Консультация',
             'description' => 'Обратиться за консультацией',
             'phone_number' => '103',
