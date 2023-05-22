@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Sanctum\Http\Controllers\AuthenticatedSessionController;
-use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +13,6 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 |
 */
 
-
+Route::get('/', function () {
+    return view('welcome');
+});

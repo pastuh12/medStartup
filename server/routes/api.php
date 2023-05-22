@@ -1,15 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ContactsController;
-use App\Http\Controllers\Api\UsersController;
-use App\Models\User;
+use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\ContactsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\ValidationException;
-use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
-/*
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,12 +15,13 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('auth/login', [AuthController::class, 'login']);
-Route::post('auth/logout', [AuthController::class, 'logout']);
-Route::post('auth/register', [AuthController::class, 'register']);
 
-//contacts
-Route::get('contacts' , [ContactsController::class, 'getAll']);
-// Route::get('/profile/{id}', )->middleware('auth:sanctum');
+Route::controller(RegisterController::class)->group(function(){
+    Route::post('register', 'register');
+    Route::post('login', 'login');
+});
 
-Route::middleware('auth:sanctum')->get('/profile/{id}', [UsersController::class, 'getProfile']);
+Route::middleware('auth:sanctum')->group( function () {
+    Route::resource('contacts', ContactsController::class);
+});
+Route::resource('contacts2', ContactsController::class);
