@@ -1,47 +1,56 @@
 import 'dart:convert';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:connectivity/connectivity.dart';
 import 'package:myapp/const_only.dart';
 Future<http.Response> getData() async {
+//123123 comments
 
-  Uri url = Uri.http(urlServer, 'api/contacts');
+
+//
+  Uri url = Uri.http(urlServer, 'api/contacts2');
+  // final String token = 'asdrjiofghjioasvhjnwvwovwioiolefklghjb';
+  // var response = await http.get(url, headers: {'Accept': 'application/json', 'Authorization': "Bearer $token"});
   var response = await http.get(url);
 
   return response;
 }
-void loadData(){
-  getData().then((response) {
+Future<List?> loadData() async {
+  try {
+    final response = await getData();
     if(response.statusCode == 200) {
       final bodyString = utf8.decode(response.bodyBytes);
-      final result = jsonDecode(bodyString);
-      print(result);
+      final  Map<String, dynamic> result = jsonDecode(bodyString);
+      final List contacts = result['contacts'];
+      contacts.forEach(print);
+      return contacts;
     } else {
       print(response.statusCode);
+      return null;
     }
-
-  }).catchError((error){
-    debugPrint(error.toString());
-  });
+  } catch(e) {
+    return null;
+  }
 }
 
-
-
-Future<http.Response> getDataClient() async {
-  var client = http.Client();
+String? getContact(List constanct, int id) {
   try {
-    var response = await client.get(
-        Uri.parse('http://192.168.31.28:8000/api/contacts'));
-    return response;
-  }
-
-  finally {
-  client.close();
+    final String number = constanct[id]['phone_number'];
+    return number;
+  } catch(e) {
+    return null;
   }
 }
 
-void loadData2() {
-  getDataClient().then((value) => print(value.body))
-      .catchError((onError) => debugPrint('Error ->$onError'));
+Future<void> startCall(int id) async {
+  try {
+    final contacts = await loadData();
+    final credantions = getContact(contacts!, id);
+    await launch(("tel:$credantions"));
+    print('Хууууууууууууууууууууууууууууй');
+  }
+  catch(error) {
+    print(error);
+  }
 }

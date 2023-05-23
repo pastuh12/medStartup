@@ -27,9 +27,9 @@ class _MyAppState extends State<MyApp> {
 	int _currentIndex = 0;
 
 	@override
-	void initState(){
+	initState(){
 		super.initState();
-		loadData();
+		//loadData();
 	}
 	
 	@override

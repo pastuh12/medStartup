@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/pages/async.dart';
 import 'package:myapp/utils.dart';
 
 class Scene extends StatefulWidget {
@@ -15,7 +16,7 @@ class _SceneState extends State<Scene> {
     return Column(
       children: <Widget>[
         GestureDetector(
-          onTap: () => print('click'),
+          onTap: () => startCall(1),
           //launch("tel:+789000000000"), // открывает звонки с номеро
           child: Container(
             height: 62,
