@@ -28,11 +28,10 @@ class _MyAppState extends State<MyApp> {
   List<String> menuTitles = ['Домашняя', 'Личный кабинет', 'Записи', 'Анализы', 'Контакты'];
 
 	@override
-	void initState(){
+  initState(){
 		super.initState();
-		loadData();
 	}
-	
+
 	@override
 	Widget build(BuildContext context) {
 	return MaterialApp(
