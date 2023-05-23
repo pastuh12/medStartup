@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'firstname',
-        'secondname',
+        'lastname',
         'patronymic',
         'birthday',
         'phone_number',
@@ -47,4 +47,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getName()
+    {
+        return $this->firstname . $this->lastname . $this->patronymic;
+    }
 }
