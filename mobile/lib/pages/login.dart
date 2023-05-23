@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/func/func1.dart';
 import 'package:myapp/utils.dart';
 
 class Scene extends StatelessWidget {
@@ -84,7 +85,7 @@ class Scene extends StatelessWidget {
                     height: 51,
                     margin: EdgeInsets.symmetric(vertical: 17),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => login(),
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
