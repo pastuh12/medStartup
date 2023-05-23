@@ -102,7 +102,7 @@ class Scene extends StatelessWidget {
                   ),
                   ],
               ),
-                  SizedBox(height: 20,width: 20,)
+                  SizedBox(height: 20,width: 20,),
                 ],
               ),
             ),

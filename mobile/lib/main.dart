@@ -14,7 +14,9 @@ import 'package:myapp/utils.dart';
 // import 'package:myapp/page-1/analisi.dart';
 // import 'package:myapp/page-1/contacts.dart';
 //import 'package:myapp/pages/testContacts.dart';
-import 'package:myapp/pages/login.dart';
+//import 'package:myapp/pages/login.dart';
+//import 'package:myapp/pages/analizy.dart';
+import 'package:myapp/pages/zapisy.dart';
 
 void main() => runApp(MyApp());
 

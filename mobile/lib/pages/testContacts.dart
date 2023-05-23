@@ -34,7 +34,7 @@ class _SceneState extends State<Scene> {
                     Text(
                       'Скорая помощь',
                       style: SafeGoogleFont('Inter',
-                          fontSize: 16, fontWeight: FontWeight.w500),
+                          fontSize: 16, fontWeight: FontWeight.w600),
                     ),
                     Text(
                       'Вызвать скорую помощь',
