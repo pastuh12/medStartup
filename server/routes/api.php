@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\ContactsController;
+use App\Http\Controllers\API\SpecializationsController;
+use App\Http\Controllers\API\DoctorsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(RegisterController::class)->group(function(){
+Route::controller(RegisterController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
 });
 
-Route::middleware('auth:sanctum')->group( function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::resource('contacts', ContactsController::class);
+    Route::resource('specializations', SpecializationsController::class);
 });
 Route::resource('contacts2', ContactsController::class);
+Route::get('doctors', [DoctorsController::class, 'getAll']);
