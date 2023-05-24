@@ -4,12 +4,12 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class Scene extends StatefulWidget {
+class ScreenContacts extends StatefulWidget {
   @override
-  State<Scene> createState() => _SceneState();
+  _ScreenContactsState createState() => _ScreenContactsState();
 }
 
-class _SceneState extends State<Scene> {
+class _ScreenContactsState extends State<ScreenContacts> {
   @override
   Widget build(BuildContext context) {
     return Column(

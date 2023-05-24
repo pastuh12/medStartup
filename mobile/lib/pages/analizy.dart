@@ -4,12 +4,12 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class Scene extends StatefulWidget {
+class ScreenAnalizy extends StatefulWidget {
   @override
-  State<Scene> createState() => _SceneState();
+  _ScreenAnalizyState createState() => _ScreenAnalizyState();
 }
 
-class _SceneState extends State<Scene> {
+class _ScreenAnalizyState extends State<ScreenAnalizy> {
   //Захардкоженные данные для анализов
   List<String> analizTitles = ['Общий анализ крови', 'МРТ', 'КТ'];
   List<String> analizSubtitles = ['12.05', '17.05', '12.05'];

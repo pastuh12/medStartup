@@ -3,13 +3,16 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/pages/vibor3.dart';
+import 'package:myapp/pages/vibor.dart';
 
-class Scene extends StatefulWidget {
+
+class ScreenZapisy extends StatefulWidget {
   @override
-  State<Scene> createState() => _SceneState();
+  _ScreenZapisyState createState() => _ScreenZapisyState();
 }
 
-class _SceneState extends State<Scene> {
+class _ScreenZapisyState extends State<ScreenZapisy> {
   //Захардкоженные данные для Записей
   List<String> zapisTitles = ['Хирург', 'Терапевт', 'Кардиолог'];
   List<String> zapisSubtitles = ['12.05 12:00', '12.05 14:00', '17.05 12:00'];
@@ -69,27 +72,27 @@ class _SceneState extends State<Scene> {
               height: 20,
               width: 20,
             ),
-            Container(
-              width: double.infinity,
-              height: 51,
-              margin: EdgeInsets.symmetric(horizontal: 37, vertical: 12),
-              child: ElevatedButton(
-                onPressed: () {print('+ Новая запись');},
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    )),
-                child: Text(
-                  '+ Новая запись',
-                  style: SafeGoogleFont(
-                    'Inter',
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xffffffff),
+             Container(
+                width: double.infinity,
+                height: 51,
+                margin: EdgeInsets.symmetric(horizontal: 37, vertical: 12),
+                child: ElevatedButton(
+                  onPressed: () {Navigator.push(context,   MaterialPageRoute(builder: (context)=> ScreenVibor1()),);},
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      )),
+                  child: Text(
+                    '+ Новая запись',
+                    style: SafeGoogleFont(
+                      'Inter',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xffffffff),
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ],
