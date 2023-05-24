@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('contacts', ContactsController::class);
     Route::resource('specializations', SpecializationsController::class);
 });
-Route::resource('contacts2', ContactsController::class);
+Route::get('contacts2', [ContactsController::class, 'index']);
 Route::get('doctors', [DoctorsController::class, 'getAll']);
 
 ///slkvnjcslkvslkvjslkvfsajlkvksdv
