@@ -16,7 +16,7 @@ import 'package:myapp/utils.dart';
 import 'package:myapp/pages/testContacts.dart';
 //import 'package:myapp/pages/login.dart';
 //import 'package:myapp/pages/analizy.dart';
-//import 'package:myapp/pages/zapisy.dart';
+// import 'package:myapp/pages/zapisy.dart';
 //import 'package:myapp/pages/vibor.dart';
 //import 'package:myapp/pages/vibor2.dart';
 
@@ -34,7 +34,6 @@ class _MyAppState extends State<MyApp> {
 	@override
 	void initState(){
 		super.initState();
-		loadData();
 	}
   @override
   Widget build(BuildContext context) {
