@@ -15,8 +15,10 @@ import 'package:myapp/utils.dart';
 // import 'package:myapp/page-1/contacts.dart';
 import 'package:myapp/pages/testContacts.dart';
 //import 'package:myapp/pages/login.dart';
-//import 'package:myapp/pages/analizy.dart';
-// import 'package:myapp/pages/zapisy.dart';
+import 'package:myapp/pages/analizy.dart';
+import 'package:myapp/pages/zapisy.dart';
+import 'package:myapp/pages/lk.dart';
+import 'package:myapp/pages/home.dart';
 //import 'package:myapp/pages/vibor.dart';
 //import 'package:myapp/pages/vibor2.dart';
 
@@ -30,6 +32,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int _currentIndex = 0;
+  final List<Widget> _screens = [
+    ScreenHome(),
+    ScreenLK(),
+    ScreenZapisy(),
+    ScreenAnalizy(),
+    ScreenContacts(),
+  ];
   List<String> menuTitles = ['Домашняя', 'Личный кабинет', 'Записи', 'Анализы', 'Контакты'];
 	@override
 	void initState(){
@@ -62,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         // body: SingleChildScrollView(
         //   child: Scene(),
         // ),
-        body: Scene(),
+        body: _screens[_currentIndex],
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(10),
