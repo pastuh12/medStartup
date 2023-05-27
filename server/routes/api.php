@@ -4,6 +4,7 @@ use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\ContactsController;
 use App\Http\Controllers\API\SpecializationsController;
 use App\Http\Controllers\API\DoctorsController;
+use App\Http\Controllers\API\NewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::get('contacts2', [ContactsController::class, 'index']);
 Route::get('doctors', [DoctorsController::class, 'getAll']);
+Route::get('images/getAll', [NewsController::class, 'getAllImages']);
 
 ///slkvnjcslkvslkvjslkvfsajlkvksdv
