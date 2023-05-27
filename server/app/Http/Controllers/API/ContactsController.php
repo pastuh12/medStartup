@@ -19,9 +19,9 @@ class ContactsController extends BaseController
         try {
             $contacts = Contacts::all();
 
-            return $this->sendResponse(ContactsResource::collection($contacts), 'Contacts retrieved successfully.');
+            return $this->sendResponse($contacts, 'Contacts retrieved successfully.');
         } catch (\Throwable $th) {
-            $this->sendError('Server error', [$th->getMessage()], 500);
+            return $this->sendError('Server error', [$th->getMessage()], 500);
         }
     }
 }

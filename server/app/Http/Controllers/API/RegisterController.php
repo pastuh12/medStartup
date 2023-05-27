@@ -47,10 +47,8 @@ class RegisterController extends BaseController
             $user->save();
             return $this->sendResponse($success, 'User register successfully.');
         } catch (error $error) {
-            $this->sendError('Server error ' . $error->getMessage(), 500);
+            return $this->sendError('Server error ' . $error->getMessage(), 500);
         }
-
-        return $this->sendError('Something was wrong', 500);
     }
 
     /**
