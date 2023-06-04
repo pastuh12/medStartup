@@ -34,7 +34,7 @@ class DoctorsController extends BaseController
             return $this->sendResponse($doctors, 'Doctors retrieved successfully.');
             // return $this->sendResponse($doctors, 'Doctors retrieved successfully.');
         } catch (\Throwable $th) {
-            $this->sendError('Server error', [$th->getMessage()], 500);
+            return $this->sendError('Server error', [$th->getMessage()], 500);
         }
 
     }

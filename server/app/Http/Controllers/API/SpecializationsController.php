@@ -16,14 +16,16 @@ class SpecializationsController extends BaseController
      */
     public function index()
     {
-       try {
-        $specializations = Specializations::all();
+        try {
+            $specializations = Specializations::all();
 
-        return $this->sendResponse(SpecializationsResource::collection($specializations), 'Specializations retrieved successfully.');
+            return $this->sendResponse(
+                SpecializationsResource::collection($specializations),
+                'Specializations retrieved successfully.'
+            );
 
-       } catch (\Throwable $th) {
-        $this->sendError('Server error', [$th->getMessage()], 500);
-       }
+        } catch (\Throwable $th) {
+            return $this->sendError('Server error', [$th->getMessage()], 500);
+        }
     }
-
 }
