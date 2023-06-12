@@ -5,9 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController;
 use App\Http\Resources\ContactsResource;
 use App\Http\Resources\UsersResource;
+use App\Jobs\SendEmail;
+use App\Mail\test;
 use App\Models\Contacts;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends BaseController
@@ -35,17 +38,21 @@ class UsersController extends BaseController
     {
         try {
             $data = $request->all();
+            print(implode($data));
 
             $validator = Validator::make($data, [
-                'phone_number' => 'required|unique:users,phone_number|regex:/^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$/',
-                'email' => 'required|email|unique:users,email',
+                'phone_number' => 'unique:users',
+                'email' => 'email|unique:users',
                 'avatar' => '',
             ]);
 
             if ($validator->fails()) {
                 return $this->sendError('Validation Error.', $validator->errors());
             }
-            if(!$user = User::where('id', $id)) {
+
+            $user = User::find($id);
+
+            if(!$user) {
                 return $this->sendError('User with this id not exist', 404);
             }
 
@@ -58,14 +65,18 @@ class UsersController extends BaseController
 
                 $user->avatar = $path;
             }
-            if($data['phone_number']) {
+            if(key_exists('phone_number', $data)) {
                 $user->phone_number = $data['phone_number'];
             }
-            if($data['phone_number']) {
+            if(key_exists('email', $data)) {
                 $user->email = $data['email'];
             }
 
             $user->save();
+            // dd($request->user());
+            SendEmail::dispatch();
+            // Mail::to('tarasov.pastuh12@yandex.ru')->send(new test());
+            return $this->sendResponse(['status' => true], 'success');
 
         } catch (\Throwable $th) {
             return $this->sendError('Server error', [$th->getMessage()], 500);

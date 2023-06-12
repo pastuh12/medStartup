@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('analysis_norms', function (Blueprint $table) {
             $table->id();
-            $table->string('password', 200);
-            $table->timestamps();
+            $table->string('analysis_name', 200);
+            $table->string('analysis_indicator', 200);
+            $table->string('min_male_norm', 200);
+            $table->string('max_male_norm', 200);
+            $table->string('max_female_norm', 200);
+            $table->string('max_female_norm', 200);
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('analysis_norms');
     }
 };

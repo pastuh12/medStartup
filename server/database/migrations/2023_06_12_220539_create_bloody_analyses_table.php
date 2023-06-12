@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('bloody_analyses', function (Blueprint $table) {
             $table->id();
-            $table->string('password', 200);
+            $table->string('medical_card_id')->unsigned();
+            $table->float('erythrocyte');
+            $table->float('hemoglobin');
+            $table->float('leukocyte');
+            $table->foreign('medical_card_id')->references('id')->on('medical_cards');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('bloody_analyses');
     }
 };

@@ -16,8 +16,14 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
+            $table->string('fio', 200);
+            $table->boolean('male');
+            $table->timestamp('birthday');
+            $table->string('email', 200);
+            $table->string('phone_number', 200);
+            $table->string('photo', 200)->nullable();
+            $table->integer('expirience')->unsigned();
             $table->integer('specialization_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('specialization_id')->references('id')->on('specializations');
             $table->integer('expirience', false, true)->nullable();
             $table->enum('medical_category', ['вторая', 'первая', 'высшая']);

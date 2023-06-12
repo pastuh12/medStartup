@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('analysis_documents', function (Blueprint $table) {
             $table->id();
-            $table->string('password', 200);
+            $table->integer('medical_card_id')->unsigned();
+            $table->string('file_path', 200);
+            $table->integer('analysis_type_id', 200);
+            $table->foreign('medical_card_id')->references('id')->on('medical_cards');
+            $table->foreign('analysis_type_id')->references('id')->on('analysis_type');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('analysis_documents');
     }
 };

@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('medical_cards', function (Blueprint $table) {
             $table->id();
-            $table->string('password', 200);
+            $table->string('diagnosis', 1000);
+            $table->float('weight');
+            $table->float('height');
+            $table->string('last_blood_analysis_document', 200)->nullable();
+            $table->string('last_cal_analysis_document', 200)->nullable();
+            $table->string('last_urine_analysis', 200)->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('medical_cards');
     }
 };
